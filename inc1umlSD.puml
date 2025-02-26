@@ -1,0 +1,36 @@
+@startuml
+
+title NBA Data Processing System - Sequence Diagram
+
+participant "Fetch Player Stats" as FetchStats
+participant "Calculate Averages" as CalcAvg
+participant "Save Player Stats CSV" as SaveStats
+participant "Fetch Season Schedule" as FetchSchedule
+participant "Process Schedule Data" as ProcessSchedule
+participant "Save Cleaned Schedule CSV" as SaveSchedule
+participant "Generate Matchup Data" as GenerateMatchup
+
+FetchStats -> FetchStats: Retrieve player stats from API
+FetchStats -> CalcAvg: Send raw player stats data
+
+CalcAvg -> CalcAvg: Calculate per-game averages
+CalcAvg -> SaveStats: Send processed player stats
+
+SaveStats -> SaveStats: Save player stats to 'average_stats.csv'
+
+FetchSchedule -> FetchSchedule: Retrieve 2025 season schedule from API
+FetchSchedule -> ProcessSchedule: Send raw schedule data
+
+ProcessSchedule -> ProcessSchedule: Extract unique team list
+ProcessSchedule -> SaveSchedule: Save 'ListOfTeams.csv'
+
+ProcessSchedule -> ProcessSchedule: Remove incomplete game data
+ProcessSchedule -> SaveSchedule: Save 'NBA_2025_cleaned_schedule.csv'
+
+SaveSchedule -> SaveSchedule: Format team names correctly
+SaveSchedule -> SaveSchedule: Save final 'NBA_2025_OFFICIAL_TEAM_SCHEDULE.csv'
+
+GenerateMatchup -> GenerateMatchup: Create matchup probability dictionary
+GenerateMatchup -> GenerateMatchup: Print matchup probabilities
+
+@enduml
