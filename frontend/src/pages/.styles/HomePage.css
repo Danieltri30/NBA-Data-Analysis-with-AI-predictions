@@ -1,0 +1,20 @@
+.home-container {
+  text-align: center; 
+  padding: 20px; 
+  background-color: rgba(255, 255, 255, 0.992); 
+  min-height: 100vh; /* Full-page height */
+}
+
+.home-container h2 {
+  color: #313131; /* Dark gray heading */
+}
+
+.home-container a {
+  color: #007bff;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+.home-container a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
