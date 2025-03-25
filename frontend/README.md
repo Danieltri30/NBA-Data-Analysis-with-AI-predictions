@@ -1,70 +1,83 @@
-# Getting Started with Create React App
+# NBA Stats Predictor Frontend
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This is the frontend portion of the NBA Stats Predictor App, built with [Create React App](https://github.com/facebook/create-react-app).  
+It displays a list of today's NBA games using real-time data from the [BallDontLie API](https://www.balldontlie.io/) via a secure Node.js proxy backend server.  
+This frontend is connected to a React-based UI with support for routing, live data fetching, and user interaction.
 
-## Available Scripts
+> **Important:** This frontend depends on the backend proxy server running from the root directory (`proxy-server.js`) to handle API key authentication and fetch NBA game data.  
+> The full application is intended to be run via the root project using `npm start`.
 
-In the project directory, you can run:
+---
 
-### `npm start`
+## Getting Started
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+To run this frontend independently:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+```bash
+cd frontend
+npm install
+npm start
+```
 
-### `npm test`
+This wil run the React development server at http://localhost:3000.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+To run the full stack application (frontend + backend proxy), return to the project root and use: 
 
-### `npm run build`
+```bash
+npm install
+npm start
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+This starts both the backend and frontend concurrently using the "concurrently" package.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+---
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Features
 
-### `npm run eject`
+- Displays a list of NBA games for the current day
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+- Fetches data securely through a proxy Node.js backend
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+- Automatically updates game list daily
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+- Logos for each team shown
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+- Games sorted by start time, and alphabetically if times are equal
 
-## Learn More
+- Responsive and styled with dark theme CSS
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+---
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Available Scripts (in /frontend)
 
-### Code Splitting
+In the frontend directory, you can run:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+```bash 
+npm start
+```
+- Runs the app in the development mode.
+- Open http://localhost:3000 to view it in your browser.
+- The page will reload when you make changes. You may also see lint errors in the console.
 
-### Analyzing the Bundle Size
+```bash 
+npm test
+```
+- Launches the test runner in the interactive watch mode.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+```bash 
+npm run build
+```
+- Builds the app for production to the build folder.
+- It correctly bundles React in production mode and optimizes the build for the best performance.
 
-### Making a Progressive Web App
+- The build is minified and the filenames include the hashes.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+```bash 
+npm run eject
+```
+- Note: this is a one-way operation. 
 
-### Advanced Configuration
+- If you aren’t satisfied with the build tool and configuration choices, you can eject at any time.
+- This command will remove the single build dependency from the project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc.) right into the project for better control.

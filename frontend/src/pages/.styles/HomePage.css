@@ -1,20 +1,19 @@
+/* Styles for the HomePage component */
+
 .home-container {
-  text-align: center; 
-  padding: 20px; 
-  background-color: rgba(255, 255, 255, 0.992); 
-  min-height: 100vh; /* Full-page height */
+  text-align: center;
+  padding: 20px;
+  background-color: #2a2b2e;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 600px;
 }
 
 .home-container h2 {
-  color: #313131; /* Dark gray heading */
+  color: #fff;
+  margin-bottom: 10px;
 }
 
-.home-container a {
-  color: #007bff;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-.home-container a:hover {
-  text-decoration: underline; /* Underline on hover */
+.home-container p {
+  color: #ddd;
 }
