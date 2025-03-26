@@ -38,11 +38,11 @@ const TodaysGames = () => {
     SAS: "https://a.espncdn.com/i/teamlogos/nba/500/sas.png",
     TOR: "https://a.espncdn.com/i/teamlogos/nba/500/tor.png",
     UTA: "https://a.espncdn.com/i/teamlogos/nba/500/utah.png",
-    WAS: "https://a.espncdn.com/i/teamlogos/nba/500/wsh.png",
+    WAS: "https://a.espncdn.com/i/teamlogos/nba/500/wsh.png"
   };
 
   useEffect(() => {
-    // Fetch today's games from the backend proxy server
+    // Fetch today's games from the backend proxy server and refresh every 60 seconds
     const fetchGames = async () => {
       try {
         const today = new Date().toISOString().split("T")[0]; // Format date as YYYY-MM-DD
@@ -71,6 +71,8 @@ const TodaysGames = () => {
     };
 
     fetchGames();
+    const interval = setInterval(fetchGames, 60000); // Refresh every 60 seconds
+    return () => clearInterval(interval);
   }, []);
 
   // Render loading, error, or "no games" states
@@ -87,7 +89,7 @@ const TodaysGames = () => {
           const homeLogo = teamLogos[game.home_team.abbreviation];
           const formattedTime = new Date(game.datetime).toLocaleTimeString([], {
             hour: "2-digit",
-            minute: "2-digit",
+            minute: "2-digit"
           });
 
           return (

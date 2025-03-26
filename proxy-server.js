@@ -13,9 +13,22 @@ const API_KEY = "4f1f0467-2ef0-44a9-8f2a-9c4ac1b6605b";
 // Enables CORS
 app.use(cors());
 
+// Simple in-memory cache object
+let cache = {
+  timestamp: 0,
+  data: null
+};
+
 // Defines route to fetch games data for a given date
 app.get("/api/games", async (req, res) => {
   const { date } = req.query;
+  const now = Date.now();
+  const isFresh = cache.timestamp > now - 60000; // 60 seconds
+
+  // Return cached data if recent
+  if (isFresh && cache.data?.date === date) {
+    return res.json(cache.data.response);
+  }
 
   // Constructs the URL to call the external API
   const url = `https://api.balldontlie.io/v1/games?start_date=${date}&end_date=${date}`;
@@ -30,6 +43,15 @@ app.get("/api/games", async (req, res) => {
         "User-Agent": "Mozilla/5.0"
       }
     });
+
+    // Cache the response
+    cache = {
+      timestamp: now,
+      data: {
+        date,
+        response: response.data
+      }
+    };
 
     // Sends the response back to the frontend
     res.json(response.data);
