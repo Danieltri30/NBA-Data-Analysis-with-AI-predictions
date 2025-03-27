@@ -11,6 +11,7 @@
   max-width: 400px;
   background-color: #2a2b2e;
   border-radius: 8px;
+  position: relative;
 }
 
 .login-container h2 {
@@ -41,4 +42,14 @@
   color: #fff;
   cursor: pointer;
   font-weight: bold;
+}
+/* For formatting error message when logging in*/
+.error-message {
+  color: #ff4136; 
+  background-color: rgba(255, 65, 54, 0.1); 
+  padding: 10px;
+  border-radius: 4px;
+  margin-bottom: 15px;
+  text-align: center;
+  border: 1px solid #ff4136;
 }
