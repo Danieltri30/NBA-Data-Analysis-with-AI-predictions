@@ -45,8 +45,20 @@ const TodaysGames = () => {
     // Fetch today's games from the backend proxy server and refresh every 60 seconds
     const fetchGames = async () => {
       try {
-        const today = new Date().toISOString().split("T")[0]; // Format date as YYYY-MM-DD
-        const response = await fetch(`http://localhost:4000/api/games?date=${today}`);
+        // Convert to Eastern Time (America/New_York)
+        const now = new Date();
+        const eastern = new Intl.DateTimeFormat("en-US", {
+          timeZone: "America/New_York",
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit"
+        }).format(now);
+
+        // Convert MM/DD/YYYY to YYYY-MM-DD
+        const [month, day, year] = eastern.split("/");
+        const formattedDate = `${year}-${month}-${day}`;
+
+        const response = await fetch(`http://localhost:4000/api/games?date=${formattedDate}`);
 
         if (!response.ok) {
           throw new Error(`Request failed with status ${response.status}`);
@@ -87,10 +99,13 @@ const TodaysGames = () => {
         {games.map((game) => {
           const visitorLogo = teamLogos[game.visitor_team.abbreviation];
           const homeLogo = teamLogos[game.home_team.abbreviation];
-          const formattedTime = new Date(game.datetime).toLocaleTimeString([], {
-            hour: "2-digit",
-            minute: "2-digit"
-          });
+
+          const formattedTime = new Intl.DateTimeFormat("en-US", {
+            timeZone: "America/New_York",
+            hour: "numeric",
+            minute: "2-digit",
+            hour12: true
+          }).format(new Date(game.datetime));
 
           return (
             <div key={game.id} className="game-card">
